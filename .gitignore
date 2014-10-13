@@ -29,3 +29,7 @@ node_modules
 
 # IntelliJ
 .idea
+
+# ElasticBeanstalk
+.elasticbeanstalk/
+
