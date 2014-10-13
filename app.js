@@ -17,7 +17,11 @@
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
 
-    app.use('/', requestType('application/json'), function (req, res, next) {
+    app.get('/', function(req, res) {
+       res.status(200).send('Health Check!');
+    });
+
+    app.post('/', requestType('application/json'), function (req, res, next) {
         if (req.body.Message) {
             var message = JSON.parse(req.body.Message);
             debugger;
