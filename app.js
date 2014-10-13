@@ -53,29 +53,19 @@
             fieldType = isArray ? typeof field[0] : typeof field;
         switch (fieldType) {
             case 'object':
-            {
                 fieldObject[isArray ? 'BS' : 'B'] = isArray ? field.map(toBuffer) : toBuffer(field);
-            }
                 break;
             case 'number':
-            {
                 fieldObject[isArray ? 'NS' : 'N'] = isArray ? field.map(toString) : toString(field);
-            }
                 break;
             case 'boolean':
-            {
                 fieldObject[isArray ? 'SS' : 'S'] = isArray ? field.map(toString) : toString(field);
-            }
                 break;
             case 'string':
-            {
                 fieldObject[isArray ? 'SS' : 'S'] = field;
-            }
                 break;
             default :
-            {
                 throw new Error('cannot convert type for dynamo:' + fieldType);
-            }
         }
         return fieldObject;
     }
@@ -91,6 +81,24 @@
             request[key] = dynamoType(item[key]);
         });
         return request;
+    }
+
+    /**
+     * Converts an item into a buffer of that item
+     * @param item
+     * @returns {Buffer}
+     */
+    function toBuffer(item) {
+        return new Buffer(item);
+    }
+
+    /**
+     * self explanatory
+     * @param item
+     * @returns {*}
+     */
+    function toString(item) {
+        return item.toString();
     }
 
     // catch 404 and forward to error handler
