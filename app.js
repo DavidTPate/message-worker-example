@@ -24,7 +24,7 @@
     app.post('/', requestType('application/json'), function (req, res, next) {
         if (req.body.Message) {
             var message = JSON.parse(req.body.Message);
-            debugger;
+
             DynamoDB.putItem(
                 {
                     Item: toDynamoRequest(message),
